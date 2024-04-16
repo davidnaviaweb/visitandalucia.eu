@@ -1,20 +1,6 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 
-const icons = axios.get('https://nac.andalucia.org/nac/api/resource_type/generic')
-    .then(response => {
-        console.log(response.data)
-    })
-    .catch(error => {
-        console.error('Error al obtener contenido:', error);
-    });
-/* const icons = {
-    'TIPRECALOJAM': 'url_del_icono_para_TIPRECALOJAM',
-    'OTRO_CODIGO': 'url_del_icono_para_OTRO_CODIGO',
-    // Agrega más códigos e iconos según sea necesario
-};
- */
 class MapContainer extends Component {
     state = {
         showingInfoWindow: false,
@@ -43,7 +29,8 @@ class MapContainer extends Component {
         const { places } = this.props;
         const mapStyles = {
             width: '100%',
-            height: '100%'
+            height: '400px',
+            position: 'relative'
         };
 
         return (
