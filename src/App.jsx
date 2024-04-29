@@ -4,6 +4,7 @@ import FeaturedCards from './components/FeaturedCards';
 import Map from './components/Map'
 import Preloader from './components/Preloader'
 import axios from 'axios';
+import Forms from './components/Forms'
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -43,6 +44,8 @@ function App() {
           <div className="p-5">
             <h1>Mapa</h1>
             <Map places={contenido} />
+            <h1 style={{ textAlign: 'center' }}>Lugares de interés</h1><br></br>
+            <Forms/>
             <h1>Contenido</h1>
             <FeaturedCards items={contenido} />
           </div>
