@@ -1,6 +1,6 @@
 const SimpleCard = ( item ) => {
     return (
-        <article className='border-2 border-blue-200 rounded-md p-4 flex items-center bg-blue-50'>
+        <article className='border-2 border-blue-200 rounded-md p-4 flex items-center bg-blue-50 dark:bg-slate-800'>
             <div className='w-24 h-24 rounded-full overflow-hidden'>
                 <img className='w-full h-full object-cover' src={item.image} alt={item.name} />
             </div>

@@ -11,6 +11,15 @@
   h2 {
     @apply text-xl;
   }
+
+  .dark h1,
+  .dark h2,
+  .dark h3,
+  .dark h4,
+  .dark p {
+    @apply text-white;
+  }
+
 }
 
 /* Main Style */
@@ -20,5 +29,14 @@ body {
 
 #root {
   @apply bg-white;
+  --color-verdeAndalucia: #007A33
+}
+
+.dark body {
+  @apply bg-gray-900;
+}
+
+.dark #root {
+  @apply bg-gray-800;
   --color-verdeAndalucia: #007A33
 }

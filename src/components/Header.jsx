@@ -1,5 +1,6 @@
 import React from 'react';
 import DropdownMenu from './DropdownMenu'; 
+import ThemeSwitch from './ThemeSwitch';
 
 const Header = () => {
   return (
@@ -40,6 +41,7 @@ const Header = () => {
             <path d="M5 12h14M12 5l7 7-7 7"></path>
           </svg>
         </button>
+        <ThemeSwitch />
       </div>
     </header>
   );
