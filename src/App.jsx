@@ -1,70 +1,81 @@
 import { useState, useEffect } from 'react'
-import Header from './components/Header'
-import FeaturedCards from './components/FeaturedCards';
-import Map from './components/Map'
-import Preloader from './components/Preloader'
+import Header from './components/Common/Header'
+import Preloader from './components/Common/Preloader'
 import axios from 'axios';
 import Forms from './components/Forms'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Home from './pages/Home';
+import Province from './pages/Province';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
-  const [contenido, setContenido] = useState([]);
+  const [items, setItems] = useState([]);
+  const [provinces, setProvinces] = useState([]);
 
   useEffect(() => {
     setIsLoading(true);
 
-    async function loadAllItems() {
-      let items = [];
-      let pageNumber = 0;
-      const pageSize = 50;
-      let totalCount = 0;
-    
-      do {
-        const response = await axios.post('https://nac.andalucia.org/nac/api/resource/paginated',
-          {
-            "item_number": 0,
-            "page_size": pageSize,
-            "filters":
-            {
-              "resource_state_history.resource_state.code": "ESTREPUBLICADO",
-              "resource_state_history.current": true
-            },
-            "sort": "name",
-            "asc": true
-          }
-        );
+    // async function loadAllItems() {
+    //   let items = [];
+    //   let pageNumber = 0;
+    //   const pageSize = 50;
+    //   let totalCount = 0;
 
-        items = items.concat(response.data.list);
-        totalCount = response.data.summary_count;
-        pageNumber++;
-      } while (items.length < totalCount && pageNumber < 10);
-    
-      return items;
+    //   do {
+    //     const response = await axios.post('https://nac.andalucia.org/nac/api/resource/paginated',
+    //       {
+    //         "item_number": 0,
+    //         "page_size": pageSize,
+    //         "filters":
+    //         {
+    //           "resource_state_history.resource_state.code": "ESTREPUBLICADO",
+    //           "resource_state_history.current": true
+    //         },
+    //         "sort": "name",
+    //         "asc": true
+    //       }
+    //     );
+
+    //     items = items.concat(response.data.list);
+    //     totalCount = response.data.summary_count;
+    //     pageNumber++;
+    //   } while (items.length < totalCount && pageNumber < 2);
+
+    //   return items;
+    // }
+
+    async function loadProvinces() {
+      const provinces = await axios.get('https://nac.andalucia.org/nac/api/territory/provinces/isAndaluz');
+      let results = [];
+
+      await Promise.all(provinces.data.list.map(async (province) => {
+        const result = await axios.get(`https://nac.andalucia.org/nac/api/territory/get/${province.id}`);
+        results.push(result.data);
+      }));
+
+      return results;
     }
-    
-    loadAllItems().then(items => {
-      console.log(items); // Aquí tienes todos los elementos cargados
-      setContenido(items);
+
+    loadProvinces().then(provinces => {
+      setProvinces(provinces);
       setIsLoading(false);
     });
   }, []);
+
 
   return (
     <>
       {isLoading ? (
         <Preloader />
       ) : (
-        <>
-          <Header />
-          <div className="p-5">
-            <h1>Mapa</h1>
-            <Map places={contenido} />
-            <h1 style={{ textAlign: 'center' }}>Lugares de interés</h1><br></br>
-            <Forms/>
-            <h1>Contenido</h1>
-            <FeaturedCards items={contenido} />
-          </div>
-        </>
+        <Router>
+          <Header provinces={provinces} />
+          <Routes>
+            <Route path="/" element={<Home provinces={provinces} items={items} />} />
+            <Route path="/provincia" element={<Province places={items} />} />
+            <Route path="/forms" element={<Forms />} />
+          </Routes>
+        </Router>
       )}
     </>
   )

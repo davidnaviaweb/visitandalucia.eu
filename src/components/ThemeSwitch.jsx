@@ -18,7 +18,7 @@ const ThemeSwitch = () => {
     };
 
     return (
-        <div className="flex items-center justify-center mt-4">
+        <div className="flex items-center justify-center">
             <label htmlFor="darkModeToggle" className="flex items-center cursor-pointer">
                 <div className="relative">
                     <input

@@ -4,6 +4,49 @@
 @tailwind variants;
 
 @layer base {
+  .raleway-200 {
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 100;
+    font-style: normal;
+  }
+
+  .raleway-400 {
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  .raleway-600 {
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+  }
+
+  .raleway-800 {
+    font-family: "Raleway", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 800;
+    font-style: normal;
+  }
+
+  .poetsen-one-regular {
+    font-family: "Poetsen One", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: 'Raleway';
+  }
+
   h1 {
     @apply text-2xl;
   }
@@ -22,6 +65,23 @@
 
 }
 
+@layer components {
+  a:hover{
+    color: #5cd0b3;
+  }
+
+  .logo {
+    font-family: 'Poetsen One';
+    color: #5cd0b3;
+    border-bottom: 2px solid #000
+  }
+  .dark .logo {
+    border-bottom: 2px solid #fff;
+  }
+
+  /* ... */
+}
+
 /* Main Style */
 body {
   @apply bg-gray-100;
@@ -29,7 +89,8 @@ body {
 
 #root {
   @apply bg-white;
-  --color-verdeAndalucia: #007A33
+  --color-verdeAndalucia: #007A33;
+  --color-verdeAgua: #5cd0b3;
 }
 
 .dark body {
