@@ -1,31 +1,20 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 const ThemeSwitch = () => {
+    const [darkMode, setDarkMode] = useState(localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches));
 
-    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.documentElement.classList.add('dark')
-    } else {
-        document.documentElement.classList.remove('dark')
-    }
-
-    // Whenever the user explicitly chooses light mode
-    localStorage.theme = 'light'
-
-    // Whenever the user explicitly chooses dark mode
-    localStorage.theme = 'dark'
-
-    // Whenever the user explicitly chooses to respect the OS preference
-    localStorage.removeItem('theme')
-    
-    const [darkMode, setDarkMode] = useState(false);
+    useEffect(() => {
+        if (darkMode) {
+            document.documentElement.classList.add('dark');
+            localStorage.theme = 'dark';
+        } else {
+            document.documentElement.classList.remove('dark');
+            localStorage.theme = 'light';
+        }
+    }, [darkMode]);
 
     const toggleDarkMode = () => {
         setDarkMode(!darkMode);
-        if (!darkMode) {
-            document.documentElement.classList.add('dark');
-        } else {
-            document.documentElement.classList.remove('dark');
-        }
     };
 
     return (

@@ -1,4 +1,3 @@
-import React from 'react';
 import DropdownMenu from './DropdownMenu'; 
 import ThemeSwitch from './ThemeSwitch';
 

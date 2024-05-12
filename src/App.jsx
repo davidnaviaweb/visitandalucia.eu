@@ -13,24 +13,39 @@ function App() {
   useEffect(() => {
     setIsLoading(true);
 
-    axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
-    axios.post('https://nac.andalucia.org/nac/api/resource/paginated',
-      {
-        "item_number": 0,
-        "page_size": 50,
-        "filters":
-        {
-          "resource_state_history.resource_state.code": "ESTREPUBLICADO",
-          "resource_state_history.current": true
-        },
-        "sort": "name",
-        "asc": true
-      }
-    ).then(response => {
-      setContenido(response.data.list);
+    async function loadAllItems() {
+      let items = [];
+      let pageNumber = 0;
+      const pageSize = 50;
+      let totalCount = 0;
+    
+      do {
+        const response = await axios.post('https://nac.andalucia.org/nac/api/resource/paginated',
+          {
+            "item_number": 0,
+            "page_size": pageSize,
+            "filters":
+            {
+              "resource_state_history.resource_state.code": "ESTREPUBLICADO",
+              "resource_state_history.current": true
+            },
+            "sort": "name",
+            "asc": true
+          }
+        );
+
+        items = items.concat(response.data.list);
+        totalCount = response.data.summary_count;
+        pageNumber++;
+      } while (items.length < totalCount && pageNumber < 10);
+    
+      return items;
+    }
+    
+    loadAllItems().then(items => {
+      console.log(items); // Aquí tienes todos los elementos cargados
+      setContenido(items);
       setIsLoading(false);
-    }).catch(error => {
-      console.error('Error al obtener contenido:', error);
     });
   }, []);
 
