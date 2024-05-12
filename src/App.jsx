@@ -70,11 +70,13 @@ function App() {
       ) : (
         <Router>
           <Header provinces={provinces} />
-          <Routes>
-            <Route path="/" element={<Home provinces={provinces} items={items} />} />
-            <Route path="/provincia" element={<Province places={items} />} />
-            <Route path="/forms" element={<Forms />} />
-          </Routes>
+          <div className="p-5">
+            <Routes>
+              <Route path="/" element={<Home provinces={provinces} items={items} />} />
+              <Route path="/provincia/:slug" element={<Province provinces={provinces} />} />
+              <Route path="/forms" element={<Forms />} />
+            </Routes>
+          </div>
         </Router>
       )}
     </>
