@@ -1,80 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Poetsen+One&family=Raleway:ital,wght@0,100..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 @tailwind variants;
 
 @layer base {
-  .raleway-200 {
-    font-family: "Raleway", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 100;
-    font-style: normal;
-  }
-
-  .raleway-400 {
-    font-family: "Raleway", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 400;
-    font-style: normal;
-  }
-
-  .raleway-600 {
-    font-family: "Raleway", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 600;
-    font-style: normal;
-  }
-
-  .raleway-800 {
-    font-family: "Raleway", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 800;
-    font-style: normal;
-  }
-
-  .poetsen-one-regular {
-    font-family: "Poetsen One", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-  }
-
   h1,
   h2,
   h3,
   h4,
   h5,
   h6 {
-    font-family: 'Raleway';
+    @apply font-rale;
   }
 
   h1 {
     @apply text-2xl;
   }
-
   h2 {
     @apply text-xl;
   }
-
+  
   .dark h1,
   .dark h2,
   .dark h3,
   .dark h4,
-  .dark p {
+  .dark p,
+  .dark a {
     @apply text-white;
   }
+
+  .btn {
+    @apply text-white p-5 rounded-sm bg-puertoRico-300
+  }
+
+  a:hover {
+    @apply text-puertoRico-600
+  }
+
+
 
 }
 
 @layer components {
-  a:hover{
-    color: #5cd0b3;
+  .preloader::before {
+    content: '';
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border: 20px solid #007a33;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: preloader 1s linear infinite;
+    top: -80px;
+    left: -80px;
+    box-sizing: content-box;
   }
 
   .logo {
-    font-family: 'Poetsen One';
+    @apply text-3xl font-poetsen text-salem-800;
     color: #5cd0b3;
     border-bottom: 2px solid #000
   }
+
   .dark .logo {
     border-bottom: 2px solid #fff;
   }
@@ -87,17 +76,10 @@ body {
   @apply bg-gray-100;
 }
 
-#root {
-  @apply bg-white;
-  --color-verdeAndalucia: #007A33;
-  --color-verdeAgua: #5cd0b3;
-}
-
 .dark body {
   @apply bg-gray-900;
 }
 
 .dark #root {
   @apply bg-gray-800;
-  --color-verdeAndalucia: #007A33
 }
