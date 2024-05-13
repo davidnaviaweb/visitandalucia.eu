@@ -6,9 +6,9 @@ const ProvinceCard = (province) => {
 
     return (
         <Link to={`/provincia/${slug}`}>
-            <div className="relative h-96 bg-cover bg-center flex items-center justify-center rounded-xl" style={{ backgroundImage: 'url(' + image + ')' }}>
-                <div className="absolute bottom-0 left-0 right-0 p-4">
-                    <h2 className="text-white text-xl font-bold">{name}</h2>
+            <div className="relative flex items-center justify-center overflow-hidden bg-center bg-cover h-96 rounded-xl " style={{ backgroundImage: 'url(' + image + ')' }}>
+                <div className="absolute inset-0 bg-opacity-10 bg-gradient-to-t from-black to-transparent hover:from-neutral-900">
+                    <h2 className="p-8 text-3xl font-bold text-white">{name}</h2>
                 </div>
             </div>
         </Link>

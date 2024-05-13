@@ -9,7 +9,6 @@ function Home({ provinces, items }) {
     return (
         <>
             <Banner src={'./src/components/Home/images/2.jpg'} text={'Olé'} />
-            <h1 className='mt-20 mb-8 text-center text-5xl'>Descubre nuestro territorio</h1>
             <ProvinceCards provinces={provinces} />
             <h1>Mapa</h1>
             <Map places={items} />
