@@ -1,10 +1,11 @@
 import React from 'react'
 import GalleryItem from './GalleryItem'
+import H2 from '../Common/H2'
 
-function Gallery({images}) {
+function Gallery({ images }) {
     return (
         <>
-            <h2>Galería</h2>
+            <H2 text={'Galería'} />
             <div className="flex flex-wrap -m-1 md:-m-2">
                 {images.map((image, index) => (
                     <GalleryItem {...image} key={index} />

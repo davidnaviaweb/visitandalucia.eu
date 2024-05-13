@@ -4,6 +4,7 @@ import Banner from '../components/Home/Banner';
 import Gallery from '../components/Province/Gallery';
 import PlaceCards from '../components/Province/PlaceCards';
 import axios from 'axios';
+import H2 from '../components/Common/H2';
 
 const Province = (data) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -47,7 +48,7 @@ const Province = (data) => {
   return (
     <>
       <Banner src={foundProvince.image} text={foundProvince.name} />
-      <h2>Nuestros destacados</h2>
+      <H2 text={'Nuestros destacados'}></H2>
       <PlaceCards items={places} />
       <Gallery images={images} />
     </>

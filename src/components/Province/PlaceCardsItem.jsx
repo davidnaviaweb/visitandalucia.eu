@@ -1,18 +1,22 @@
+import { Link } from "react-router-dom";
+
 const PlaceCardsItems = (item) => {
-    console.log(item);
-    return (
-        <div className="flex flex-col shadow-xl rounded-2xl">
-            <figure className="flex items-center justify-center rounded-2xl">
-                <img src={item.image} alt="Card Preview" className="rounded-t-2xl" style={{ width: '450px', height: '350px' }}/>
-            </figure>
-            <div className="flex flex-col p-8">
-                <div className="text-2xl font-bold   text-[#374151] pb-6" >{item.name}</div>
-                <div className=" text-lg   text-[#374151]">{item.territories[0].name}</div>
-                <div className="flex justify-end pt-6">
-                    <button className="bg-[#7e22ce] text-[#ffffff]  font-bold text-base  p-3 rounded-lg hover:bg-purple-800 active:scale-95 transition-transform transform" >Visitame!</button>
+    let { slug, image, name, territories } = item;
+        return (
+        <Link to={`/lugar/${slug}`} className="flex">
+            <div className="flex flex-col overflow-auto shadow-xl grow rounded-2xl">
+                <figure className="flex items-center justify-center bg-center bg-cover aspect-video" style={{ backgroundImage: 'url(' + image + ')' }}></figure>
+                <div className="flex flex-col justify-between p-4 grow">
+                    <div className="flex flex-col">
+                        <h4 className="text-2xl font-bold">{name}</h4>
+                        <span className="text-lg">{territories[0].name}</span>
+                    </div>
+                    <div className="flex justify-end pt-6">
+                        <button className="p-3 text-base font-bold transition-transform transform rounded-lg hover:bg-purple-800 active:scale-95" >Visitame!</button>
+                    </div>
                 </div>
             </div>
-        </div>
+        </Link>
     );
 };
 

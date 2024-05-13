@@ -6,6 +6,7 @@ import Forms from './components/Forms'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Province from './pages/Province';
+import Place from './pages/Place';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -13,36 +14,28 @@ function App() {
   const [provinces, setProvinces] = useState([]);
 
   useEffect(() => {
-    setIsLoading(true);
-
-    // async function loadAllItems() {
-    //   let items = [];
-    //   let pageNumber = 0;
-    //   const pageSize = 50;
-    //   let totalCount = 0;
-
-    //   do {
-    //     const response = await axios.post('https://nac.andalucia.org/nac/api/resource/paginated',
-    //       {
-    //         "item_number": 0,
-    //         "page_size": pageSize,
-    //         "filters":
-    //         {
-    //           "resource_state_history.resource_state.code": "ESTREPUBLICADO",
-    //           "resource_state_history.current": true
-    //         },
-    //         "sort": "name",
-    //         "asc": true
-    //       }
-    //     );
-
-    //     items = items.concat(response.data.list);
-    //     totalCount = response.data.summary_count;
-    //     pageNumber++;
-    //   } while (items.length < totalCount && pageNumber < 2);
-
-    //   return items;
-    // }
+      setIsLoading(true);
+  
+      async function loadPlaces() {
+        const places = await axios.post('https://nac.andalucia.org/nac/api/resource/paginated',
+          {
+            "item_number": 0,
+            "page_size": 50,
+            "sort": "name",
+            "asc": true,
+            "filters": {
+              "outstanding": true,
+              "resource_state.code": "ESTREPUBLICADO",
+            }
+          }
+        );
+  
+        return places.data.list;
+      }
+  
+      loadPlaces().then(places => {
+        setItems(places);
+      });
 
     async function loadProvinces() {
       const provinces = await axios.get('https://nac.andalucia.org/nac/api/territory/provinces/isAndaluz');
@@ -62,7 +55,6 @@ function App() {
     });
   }, []);
 
-
   return (
     <>
       {isLoading ? (
@@ -74,6 +66,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home provinces={provinces} items={items} />} />
               <Route path="/provincia/:slug" element={<Province provinces={provinces} />} />
+              <Route path="/lugar/:slug" element={<Place />} />
               <Route path="/forms" element={<Forms />} />
             </Routes>
           </div>
