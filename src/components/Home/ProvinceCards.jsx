@@ -1,5 +1,5 @@
-import React from 'react';
 import ProvinceCard from './ProvinceCard';
+import PropTypes from 'prop-types';
 
 const ProvinceCards = ({ provinces }) => {
     return (
@@ -12,6 +12,10 @@ const ProvinceCards = ({ provinces }) => {
             </div>
         </>
     );
+};
+
+ProvinceCards.propTypes = {
+    provinces: PropTypes.array.isRequired,
 };
 
 export default ProvinceCards;

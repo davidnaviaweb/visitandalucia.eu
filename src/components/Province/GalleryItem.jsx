@@ -1,13 +1,14 @@
-import React from 'react'
 
-function GalleryItem() {
+function GalleryItem(image) {
+    const source = image.file;
+    console.log(source);
     return (
-        <div class="flex w-1/3 flex-wrap">
-            <div class="w-full p-1 md:p-2">
+        <div className="flex flex-wrap w-1/3">
+            <div className="w-full p-1 md:p-2">
                 <img
                     alt="gallery"
-                    class="block h-full w-full rounded-lg object-cover object-center"
-                    src="https://tecdn.b-cdn.net/img/Photos/Horizontal/Nature/4-col/img%20(73).webp" />
+                    className="w-full h-64 rounded-lg"
+                    src={source} />
             </div>
         </div>
     )

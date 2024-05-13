@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 
 const Banner = ({ src, text }) => {
     return (
@@ -8,6 +8,11 @@ const Banner = ({ src, text }) => {
             </div>
         </div>
     );
+};
+
+Banner.propTypes = {
+    src: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
 };
 
 export default Banner;

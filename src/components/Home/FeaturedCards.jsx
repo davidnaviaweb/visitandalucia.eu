@@ -8,7 +8,7 @@ const FeaturedCards = ({ items }) => {
   const limitedItems = items.slice(0, 8);
 
   return (
-    <div className='w-fit grid grid-cols-2 gap-4'>
+    <div className='grid grid-cols-2 gap-4 mt-4'>
       {limitedItems.map((item, index) => (
         index < 8 ? <SimpleCard key={index} {...item} /> : null
       ))}
