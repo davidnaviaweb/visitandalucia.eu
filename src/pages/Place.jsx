@@ -1,10 +1,6 @@
 import React, { Component, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import Banner from '../components/Home/Banner';
-import Gallery from '../components/Province/Gallery';
-import PlaceCards from '../components/Province/PlaceCards';
 import axios from 'axios';
-import H2 from '../components/Common/H2';
 
 const Place = (data) => {
     const [isLoading, setIsLoading] = useState(true);
@@ -18,16 +14,20 @@ const Place = (data) => {
             const places = await axios.post('https://nac.andalucia.org/nac/api/resource/paginated',
                 {
                     "item_number": 0,
-                    "page_size": 50,
+                    "page_size": 0,
                     "sort": "name",
                     "asc": true,
                     "filters": {
-                        "slug": slug
+                        "slug": slug,
                     }
                 }
             );
 
-            return places.data.list[0];
+
+            const place = await axios.get('https://nac.andalucia.org/nac/api/resource/get/' + places.data.list[0].id);
+
+
+            return place.data;
         }
 
         loadPlace().then(place => {
@@ -36,15 +36,21 @@ const Place = (data) => {
         });
     }, []);
 
-    console.log(place);
-
+    const placeArray = Object.entries(place).map(([key, value]) => ({ key, value }));
     return (
         <>
             <div className="relative w-full overflow-hidden bg-center bg-cover shadow-xl h-96 rounded-xl" style={{ backgroundImage: 'url(' + place.image + ')' }}>
                 <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-50">
                     <h1 className="text-5xl font-bold text-white">{place.name}</h1>
+
                 </div>
             </div>
+            <div className="flex flex-col">
+                <p>{place.description}</p>
+            </div>
+            {placeArray.map((user, index) => (
+                <p>{`${user.key}} : ${user.value}`}</p>
+            ))}
         </>
 
     )

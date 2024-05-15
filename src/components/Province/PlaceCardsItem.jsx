@@ -1,18 +1,23 @@
 import { Link } from "react-router-dom";
+import FaIcon from "../Common/FaIcon";
 
 const PlaceCardsItems = (item) => {
-    let { slug, image, name, territories } = item;
-        return (
+    console.log(item);
+    let { slug, image, name, territories, resource_type } = item;
+    return (
         <Link to={`/lugar/${slug}`} className="flex">
-            <div className="flex flex-col overflow-auto shadow-xl grow rounded-2xl">
-                <figure className="flex items-center justify-center bg-center bg-cover aspect-video" style={{ backgroundImage: 'url(' + image + ')' }}></figure>
+            <div className="flex flex-col overflow-auto shadow-xl grow rounded-2xl hover:shadow-2xl">
+                <figure className="flex items-start justify-end bg-center bg-cover aspect-video" style={{ backgroundImage: 'url(' + image + ')' }}>
+                </figure>
                 <div className="flex flex-col justify-between p-4 grow">
                     <div className="flex flex-col">
-                        <h4 className="text-2xl font-bold">{name}</h4>
-                        <span className="text-lg">{territories[0].name}</span>
+                        <h4 className="text-2xl font-bold text-black">{name}</h4>
+                        <span className="text-lg text-puertoRico-500">{territories[0].name}</span>
                     </div>
-                    <div className="flex justify-end pt-6">
-                        <button className="p-3 text-base font-bold transition-transform transform rounded-lg hover:bg-purple-800 active:scale-95" >Visitame!</button>
+                    <div className="flex items-center justify-end pt-2">
+                        <div className="flex items-center justify-around p-2 rounded-full shadow-lg bg-puertoRico-600 text-md" title={resource_type.name}>
+                            <FaIcon resourceTypeCode={resource_type.code} className={"text-white"} />
+                        </div>
                     </div>
                 </div>
             </div>
