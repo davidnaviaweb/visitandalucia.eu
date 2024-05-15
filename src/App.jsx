@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Province from './pages/Province';
 import Place from './pages/Place';
+import Footer from './components/Common/Footer';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -44,7 +45,7 @@ function App() {
       const provinceResponses = await Promise.all(provincePromises);
       const provinceData = provinceResponses.map(response => response.data);
 
-      return { featuredItems, provinces: provinceData, resourceTypes};
+      return { featuredItems, provinces: provinceData, resourceTypes };
     }
 
     fetchData().then(data => {
@@ -61,17 +62,20 @@ function App() {
       {isLoading ? (
         <Preloader />
       ) : (
-        <Router>
-          <Header provinces={provinces} />
-          <div className="p-5">
-            <Routes>
-              <Route path="/" element={<Home provinces={provinces} items={featuredItems} mapItems={mapItems} resourceTypes={resourceTypes} />} />
-              <Route path="/provincia/:slug" element={<Province provinces={provinces} />} />
-              <Route path="/lugar/:slug" element={<Place />} />
-              <Route path="/forms" element={<Forms />} />
-            </Routes>
-          </div>
-        </Router>
+        <>
+          <Router>
+            <Header provinces={provinces}/>
+            <main className="container mx-auto">
+              <Routes>
+                <Route path="/" element={<Home provinces={provinces} items={featuredItems} mapItems={mapItems} resourceTypes={resourceTypes} />} />
+                <Route path="/provincia/:slug" element={<Province provinces={provinces} />} />
+                <Route path="/lugar/:slug" element={<Place />} />
+                <Route path="/forms" element={<Forms />} />
+              </Routes>
+            </main>
+          </Router>
+          <Footer />
+        </>
       )}
     </>
   )
