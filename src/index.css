@@ -68,6 +68,16 @@
     border-bottom: 2px solid #fff;
   }
 
+  .quote:before { 
+    content: open-quote;
+    font-size: 4em;
+    left: -.7em;
+    top: 0.1em;
+    @apply absolute;
+    @apply font-bold;
+    @apply text-puertoRico-300
+}
+
   /* ... */
 }
 

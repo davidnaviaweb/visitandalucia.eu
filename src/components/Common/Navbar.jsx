@@ -1,6 +1,4 @@
-import React from 'react'
 import ThemeSwitch from '../ThemeSwitch'
-import DropdownMenu from '../DropdownMenu'
 import { Link } from 'react-router-dom'
 
 export default function Navbar() {

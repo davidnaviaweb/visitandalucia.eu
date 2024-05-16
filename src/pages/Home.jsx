@@ -16,7 +16,7 @@ function Home({ provinces, items, mapItems }) {
             <H1 text={'Lugares para perderse'} />
             <FeaturedCards items={items} />
             <H1 text={'Explora'} />
-            <SimpleMap places={mapItems} />
+            <SimpleMap places={mapItems} popup={true} />
             {/* <h1 style={{ textAlign: 'center' }}>Lugares de interés</h1><br></br> */}
             {/* <Forms /> */}
             {/* <h1>Contenido</h1> */}

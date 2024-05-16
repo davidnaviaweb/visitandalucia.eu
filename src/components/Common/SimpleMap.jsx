@@ -14,20 +14,28 @@ import { Link } from 'react-router-dom';
 const mapboxToken = 'pk.eyJ1IjoiZGF2aWRuYXZpYXdlYiIsImEiOiJjbHYyb2xqNDUwYXFnMmtwZmRlaHpybHRuIn0.HfOz2uNSdI4dvI_5GeM4lw'
 
 
-function SimpleMap({ places }) {
+function SimpleMap({ places, center, zoom, width, height, popup }) {
     const [popupInfo, setPopupInfo] = useState(null);
+    
+    if (center == undefined) {
+        center = { latitude: 37.2147497, longitude: -4.6595196 }
+    }
+    if(zoom == undefined) { 
+        zoom= 6.5
+    }
 
     const pins = places.map((marker, index) => (
         <Marker
             key={`marker-${index}`}
-            longitude={marker.x_coord}
             latitude={marker.y_coord}
+            longitude={marker.x_coord}
             anchor="bottom"
             onClick={e => {
                 // If we let the click event propagates to the map, it will immediately close the popup
                 // with `closeOnClick: true`
                 e.originalEvent.stopPropagation();
-                setPopupInfo(marker);
+                if(popup)
+                    setPopupInfo(marker);
             }}
         >
             <FaIcon resourceTypeCode={marker.resource_type.code} className={"h-8 w-8 bg-puertoRico-200 flex items-center justify-center text-xl rounded-full hover:drop-shadow-lg hover:bg-puertoRico-500 cursor-pointer"} />
@@ -39,13 +47,13 @@ function SimpleMap({ places }) {
             <Map
                 mapboxAccessToken={mapboxToken}
                 initialViewState={{
-                    latitude: 37.2147497,
-                    longitude: -4.6595196,
-                    zoom: 6.5,
+                    latitude: center.latitude,
+                    longitude: center.longitude,
+                    zoom: zoom,
                     bearing: 0,
                     pitch: 0
                 }}
-                style={{ width: '100%', height: 600, borderRadius: 20, overflow: 'hidden' }}
+                style={{ width: width || '100%', height: height || 600, borderRadius: 20, overflow: 'hidden' }}
                 mapStyle="mapbox://styles/mapbox/streets-v10"
             >
                 <GeolocateControl position="top-left" />
