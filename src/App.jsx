@@ -73,8 +73,8 @@ function App() {
                 <Route path="/forms" element={<Forms />} />
               </Routes>
             </main>
+            <Footer />
           </Router>
-          <Footer />
         </>
       )}
     </>
