@@ -6,8 +6,10 @@ import ProvinceCards from '../components/Home/ProvinceCards'
 import PropTypes from 'prop-types'; // Import PropTypes
 import H1 from '../components/Common/H1'
 import SimpleMap from '../components/Common/SimpleMap'
+import FilterForm from '../components/Common/FilterForm'
+import FilterableMap from '../components/Common/FilterableMap'
 
-function Home({ provinces, items, mapItems }) {
+function Home({ provinces, items, mapItems, resourceTypes}) {
     return (
         <>
             <Banner src={'./src/components/Home/images/2.jpg'} text={'Olé'} />
@@ -16,10 +18,7 @@ function Home({ provinces, items, mapItems }) {
             <H1 text={'Lugares para perderse'} />
             <FeaturedCards items={items} />
             <H1 text={'Explora'} />
-            <SimpleMap places={mapItems} popup={true} />
-            {/* <h1 style={{ textAlign: 'center' }}>Lugares de interés</h1><br></br> */}
-            {/* <Forms /> */}
-            {/* <h1>Contenido</h1> */}
+            <FilterableMap provinces={provinces} resourceTypes={resourceTypes} places={mapItems} popup={true} />
         </>
     )
 }
@@ -27,7 +26,8 @@ function Home({ provinces, items, mapItems }) {
 Home.propTypes = {
     provinces: PropTypes.array.isRequired,
     items: PropTypes.array.isRequired,
-    mapItems: PropTypes.array.isRequired
+    mapItems: PropTypes.array.isRequired,
+    resourceTypes: PropTypes.array.isRequired
 };
 
 export default Home
