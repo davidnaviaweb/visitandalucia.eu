@@ -13,7 +13,6 @@ function FilterableMap({ provinces, resourceTypes, places, popup }) {
     const handleFormChange = (formData) => {
 
         async function fetchData(formData) {
-            console.log(formData);
             let filters = { "resource_state.code": "ESTREPUBLICADO" };
 
             if (formData.province !== 0) {
@@ -28,7 +27,6 @@ function FilterableMap({ provinces, resourceTypes, places, popup }) {
                 filters = { ...filters, "resource_type.code": "TIPRECAREANATURAL" };
             }
 
-            console.log(filters);
             const placesPromise = await axios.post('https://nac.andalucia.org/nac/api/resource/paginated', {
                 "item_number": 0,
                 "page_size": 50,

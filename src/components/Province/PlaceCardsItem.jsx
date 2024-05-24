@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import FaIcon from "../Common/FaIcon";
 
 const PlaceCardsItems = (item) => {
-    console.log(item);
     let { slug, image, name, territories, resource_type } = item;
     return (
         <Link to={`/lugar/${slug}`} className="flex">

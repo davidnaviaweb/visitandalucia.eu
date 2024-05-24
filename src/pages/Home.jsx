@@ -9,10 +9,12 @@ import SimpleMap from '../components/Common/SimpleMap'
 import FilterForm from '../components/Common/FilterForm'
 import FilterableMap from '../components/Common/FilterableMap'
 
+import banner from '../assets/images/2.jpg'
+
 function Home({ provinces, items, mapItems, resourceTypes}) {
     return (
         <>
-            <Banner src={'./src/components/Home/images/2.jpg'} text={'Olé'} />
+            <Banner src={banner} text={'Olé'} />
             <H1 text={'Descubre nuestra tierra'} />
             <ProvinceCards provinces={provinces} />
             <H1 text={'Lugares para perderse'} />

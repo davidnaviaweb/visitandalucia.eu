@@ -50,9 +50,6 @@ const components = {
 }
 
 function FaIcon({ resourceTypeCode, className }) {
-    // console.log(resourceTypeCode, className);
-    // return <FaMapLocation />;
-
     const Icon = components[resourceTypeCode];
 
     return (

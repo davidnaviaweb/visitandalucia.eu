@@ -45,9 +45,6 @@ const Place = (data) => {
         });
     }, []);
 
-    console.log(place);
-
-
     return (
         <>
             <div className="relative w-full overflow-hidden bg-center bg-cover shadow-xl h-96 rounded-xl" style={{ backgroundImage: 'url(' + place.image + ')' }}>
