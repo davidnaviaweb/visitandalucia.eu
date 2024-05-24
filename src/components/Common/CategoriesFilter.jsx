@@ -2,24 +2,19 @@ import { useState } from "react";
 import FaIcon from "./FaIcon";
 
 const CategoriesFilter = ({ categories, onCategoryChange }) => {
-    const [selectedCategories, setSelectedCategories] = useState([]);
+    const [selectedCategories, setSelectedCategories] = useState(["TIPRECAREANATURAL"]);
 
     const handleCategoryClick = (event) => {
         const value = event.target.value;
-
-        const isSelected = selectedCategories.includes(value);
-        if (isSelected) {
-            setSelectedCategories(selectedCategories.filter(cat => cat !== value));
-        } else {
-            setSelectedCategories([...selectedCategories, value]);
-        }
-        onCategoryChange(selectedCategories);
+        let newCategories = value
+        setSelectedCategories(newCategories);
+        onCategoryChange(newCategories);
     };
 
     return (
         <div id="categorySelector" className='flex flex-col'>
             <h2 className='mb-2'>Categorías</h2>
-            <p>Categorías seleccionadas: {selectedCategories.join(', ')}</p>
+            {/* <p>Categorías seleccionadas: {selectedCategories.join(', ')}</p> */}
             <div className='flex flex-wrap justify-start'>
                 {categories.map((category, index) => (
                     <div key={index}>

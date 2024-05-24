@@ -2,52 +2,49 @@ import React, { useEffect, useState } from 'react'
 import FilterForm from './FilterForm'
 import SimpleMap from './SimpleMap'
 import Preloader from './Preloader';
+import axios from 'axios';
 
 function FilterableMap({ provinces, resourceTypes, places, popup }) {
-    const [isLoading, setIsLoading] = useState(true);
-    const [mapItems, setMapItems] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [mapItems, setMapItems] = useState([""]);
 
-    useEffect(() => {handleFormChange()}, []);
+    useEffect(() => { setMapItems(places) }, [places]);
 
-    const handleFormChange = () => {
-        setIsLoading(false);
+    const handleFormChange = (formData) => {
 
-        // async function fetchData() {
-        //     const placesPromise = await axios.post('https://nac.andalucia.org/nac/api/resource/paginated', {
-        //         "item_number": 0,
-        //         "page_size": 50,
-        //         "sort": "random",
-        //         "filters": {
-        //             "outstanding": true,
-        //             "resource_state.code": "ESTREPUBLICADO",
-        //             "resource_type.code": [
-        //                 "TIPRECAREANATURAL"
-        //             ],
-        //         }
-        //     });
-        //     const provincesPromise = await axios.get('https://nac.andalucia.org/nac/api/territory/provinces/isAndaluz');
-        //     const resourceTypesPromise = await axios.get('https://nac.andalucia.org/nac/api/resource_type/generic');
+        async function fetchData(formData) {
+            console.log(formData);
+            let filters = { "resource_state.code": "ESTREPUBLICADO" };
 
-        //     const [placesResponse, provincesResponse, resourceTypesResponse] = await Promise.all([placesPromise, provincesPromise, resourceTypesPromise]);
+            if (formData.province !== 0) {
+                filters = { ...filters, "territories.parent_territory_id": formData.province };
+            } else {
+                filters = { ...filters, "territories.parent_territory_id": provinces.map(province => province.id) };
+            }
 
-        //     const featuredItems = placesResponse.data.list;
-        //     const provinces = provincesResponse.data.list;
-        //     const resourceTypes = resourceTypesResponse.data.list;
+            if (formData.category.length > 0) {
+                filters = { ...filters, "resource_type.code": formData.category };
+            } else {
+                filters = { ...filters, "resource_type.code": "TIPRECAREANATURAL" };
+            }
 
-        //     const provincePromises = provinces.map(province => axios.get(`https://nac.andalucia.org/nac/api/territory/get/${province.id}`));
-        //     const provinceResponses = await Promise.all(provincePromises);
-        //     const provinceData = provinceResponses.map(response => response.data);
+            console.log(filters);
+            const placesPromise = await axios.post('https://nac.andalucia.org/nac/api/resource/paginated', {
+                "item_number": 0,
+                "page_size": 50,
+                "sort": "random",
+                "filters": filters
+            });
 
-        //     return { featuredItems, provinces: provinceData, resourceTypes };
-        // }
+            const placesResponse = await placesPromise;
 
-        // fetchData().then(data => {
-        //     setFeaturedItems(data.featuredItems);
-        //     setProvinces(data.provinces);
-        //     setMapItems(data.featuredItems);
-        //     setResourceTypes(data.resourceTypes);
-        //     setIsLoading(false);
-        // });
+            return placesResponse.data;
+        }
+
+        fetchData(formData).then(data => {
+            setMapItems(data.list);
+            setIsLoading(false);
+        });
     }
 
     return (
@@ -57,7 +54,7 @@ function FilterableMap({ provinces, resourceTypes, places, popup }) {
             ) : (
                 <div className='flex flex-row gap-8'>
                     <FilterForm provinces={provinces} resourceTypes={resourceTypes} onFormChange={handleFormChange} />
-                    <SimpleMap places={places} height={700} popup={popup} />
+                    <SimpleMap places={mapItems} height={700} popup={popup} />
                 </div>
             )}
         </>

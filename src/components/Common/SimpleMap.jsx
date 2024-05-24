@@ -24,7 +24,10 @@ function SimpleMap({ places, center, zoom, width, height, popup }) {
         zoom= 6.5
     }
 
-    const pins = places.map((marker, index) => (
+    const newPlaces = places.filter(place => place.x_coord && place.y_coord);
+    
+    const pins = newPlaces.map((marker, index) => (
+        
         <Marker
             key={`marker-${index}`}
             latitude={marker.y_coord}

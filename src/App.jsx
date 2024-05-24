@@ -27,9 +27,7 @@ function App() {
         "filters": {
           "outstanding": true,
           "resource_state.code": "ESTREPUBLICADO",
-          "resource_type.code": [
-            "TIPRECAREANATURAL"
-          ],
+          "resource_type.code": ["TIPRECAREANATURAL"],
         }
       });
       const provincesPromise = await axios.get('https://nac.andalucia.org/nac/api/territory/provinces/isAndaluz');
@@ -64,7 +62,7 @@ function App() {
       ) : (
         <>
           <Router>
-            <Header provinces={provinces}/>
+            <Header provinces={provinces} />
             <main className="container mx-auto">
               <Routes>
                 <Route path="/" element={<Home provinces={provinces} items={featuredItems} mapItems={mapItems} resourceTypes={resourceTypes} />} />
