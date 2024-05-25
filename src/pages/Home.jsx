@@ -8,7 +8,6 @@ import FilterableMap from '../components/Common/FilterableMap'
 import banner from '../assets/images/2.jpg'
 
 function Home({ provinces, items, mapItems, resourceTypes}) {
-    console.log(provinces)
     return (
         <>
             <Banner src={banner} text={'Olé'} />

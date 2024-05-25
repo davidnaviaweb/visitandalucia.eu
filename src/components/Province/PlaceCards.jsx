@@ -5,7 +5,7 @@ const PlaceCards = ({ items }) => {
   const limitedItems = items.slice(0, 8);
 
   return (
-    <div className='grid grid-cols-4 gap-4 mt-4 auto-rows-fr'>
+    <div className='grid gap-2 mt-4 md:gap-4 4 sm:grid-cols-2 auto-rows-fr lg:grid-cols-3 xl:grid-cols-4'>
       {limitedItems.map((item, index) => (
         index < 8 ? <PlaceCardsItems key={index} {...item} /> : null
       ))}
