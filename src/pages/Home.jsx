@@ -1,12 +1,8 @@
-import React from 'react'
-import Forms from '../components/Forms'
 import FeaturedCards from '../components/Home/FeaturedCards'
 import Banner from '../components/Home/Banner'
 import ProvinceCards from '../components/Home/ProvinceCards'
 import PropTypes from 'prop-types'; // Import PropTypes
 import H1 from '../components/Common/H1'
-import SimpleMap from '../components/Common/SimpleMap'
-import FilterForm from '../components/Common/FilterForm'
 import FilterableMap from '../components/Common/FilterableMap'
 
 import banner from '../assets/images/2.jpg'

@@ -7,7 +7,7 @@ const FeaturedCard = (item) => {
     let territoryNames = [...new Set(territories.map(territory => territory.province_name))];
     return (
         <Link to={`/lugar/${slug}`}>
-            <div className="relative flex items-center justify-center h-56 overflow-visible bg-center bg-cover shadow-xl rounded-xl" style={{ backgroundImage: 'url(' + image + ')' }}>
+            <div className="relative flex items-center justify-center h-56 overflow-visible bg-center bg-cover shadow-xl md:rounded-xl" style={{ backgroundImage: 'url(' + image + ')' }}>
                 <div className="absolute inset-0 flex-col justify-end pflex bg-opacity-10 bg-gradient-to-t from-black to-transparent hover:from-neutral-900 rounded-xl">
                     <div className='absolute bottom-0 left-0 right-0 flex items-end justify-between p-6 grow'>
                         <div>
