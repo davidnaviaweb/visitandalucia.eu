@@ -4,6 +4,7 @@ import axios from 'axios';
 import SimpleMap from '../components/Common/SimpleMap'
 import Preloader from '../components/Common/Preloader';
 import Gallery from '../components/Province/Gallery';
+import Header from '../components/Place/Header';
 
 const Place = (data) => {
     const [isLoading, setIsLoading] = useState(true);
@@ -47,13 +48,7 @@ const Place = (data) => {
 
     return (
         <>
-            <div className="relative w-full overflow-hidden bg-center bg-cover shadow-xl h-96 rounded-xl" style={{ backgroundImage: 'url(' + place.image + ')' }}>
-                <div className="absolute inset-0 flex flex-col items-center justify-center bg-black bg-opacity-50">
-                    <h1 className="text-5xl font-bold text-white">{place.name}</h1>
-                    <br></br>
-                    <h4 className="mt-2 text-2xl text-puertoRico-200">{place.territories ? place.territories[0].name : ''}</h4>
-                </div>
-            </div>
+            <Header place={place} />
             <div className="flex mt-8">
                 <main className="w-2/3 pr-12">
                     <p className='relative text-lg italic font-light indent-8 quote font-rale'>{place.description}</p>
