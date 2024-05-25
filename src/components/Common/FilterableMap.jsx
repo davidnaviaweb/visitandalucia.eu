@@ -50,7 +50,7 @@ function FilterableMap({ provinces, resourceTypes, places, popup }) {
             {isLoading ? (
                 <Preloader />
             ) : (
-                <div className='flex flex-row gap-8'>
+                <div className='flex flex-col gap-8 mx-2 lg:flex-row lg:mx-0'>
                     <FilterForm provinces={provinces} resourceTypes={resourceTypes} onFormChange={handleFormChange} />
                     <SimpleMap places={mapItems} height={700} popup={popup} />
                 </div>

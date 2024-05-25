@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 const ProvinceCards = ({ provinces }) => {
     return (
         <>
-            <div className="grid gap-4 mt-4 md:grid-cols-2">
+            <div className="grid gap-2 mx-2 sm:grid-cols-2 md:gap-4">
                 {provinces.map((province, index) => (
                     <ProvinceCard {...province} key={index} />
                 ))}

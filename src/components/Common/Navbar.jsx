@@ -26,7 +26,7 @@ export default function Navbar() {
                         </li>
                         <li className='flex flex-col items-center mb-2 md:mb-0'>
                             <div className='flex items-center justify-center'>
-                                <span className='mr-3 lg:hidden dark:text-white'>Modo oscuro</span><ThemeSwitch />
+                                <span className='mr-3 md:hidden dark:text-white'>Modo oscuro</span><ThemeSwitch />
                             </div>
                         </li>
                     </ul>

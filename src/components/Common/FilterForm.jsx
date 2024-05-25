@@ -31,12 +31,14 @@ const FilterForm = ({ provinces, resourceTypes, onFormChange }) => {
 
     return (
         <form className="flex flex-col basis-1/3">
-            <div id="provinceSelector" className="flex mb-8">
-                <div className="flex flex-col grow">
-                    <h2 className='mb-2'><label htmlFor="provinces">Buscar por provincia</label></h2>
+            <div id="provinceSelector" className="flex mb-4 lg:mb-6">
+                <div className="flex flex-col items-center justify-center lg:items-start grow">
+                    <h2 className='flex items-center mb-2 lg:items-start'>
+                        <label htmlFor="provinces">Provincias</label>
+                    </h2>
                     {/* <p>Provincia seleccionada: {selectedProvince}</p> */}
                     <select id="provinces"
-                        className='flex items-center p-2 bg-white rounded-md shadow-lg cursor-pointer text-puertoRico-600'
+                        className='flex items-center p-2 text-xs bg-white rounded-md shadow-lg cursor-pointer text-puertoRico-600 lg:text-sm'
                         onChange={handleProvinceChange}>
                         <option value="0" key="0">Elige una provincia</option>
                         {provinces.map((province, index) => (
