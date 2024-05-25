@@ -1,6 +1,6 @@
 import React, { Component, useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import Banner from '../components/Home/Banner';
+import Banner from '../components/Common/Banner';
 import Gallery from '../components/Province/Gallery';
 import PlaceCards from '../components/Province/PlaceCards';
 import axios from 'axios';

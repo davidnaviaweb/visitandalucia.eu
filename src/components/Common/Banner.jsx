@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import H1 from '../Common/H1';
+import H1 from './H1';
 
 const Banner = ({ src, text }) => {
     return (

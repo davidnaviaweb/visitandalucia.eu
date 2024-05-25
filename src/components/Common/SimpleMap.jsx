@@ -26,7 +26,6 @@ function SimpleMap({ places, center, zoom, width, height, popup }) {
     }
 
     const newPlaces = places.filter(place => (place.x_coord && place.y_coord));
-    const noPlaces = newPlaces.length == 0;
 
     const pins = newPlaces.map((marker, index) => (
         <Marker
@@ -35,8 +34,6 @@ function SimpleMap({ places, center, zoom, width, height, popup }) {
             longitude={marker.x_coord}
             anchor="bottom"
             onClick={e => {
-                // If we let the click event propagates to the map, it will immediately close the popup
-                // with `closeOnClick: true`
                 e.originalEvent.stopPropagation();
                 if (popup)
                     setPopupInfo(marker);

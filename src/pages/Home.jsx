@@ -1,5 +1,5 @@
 import FeaturedCards from '../components/Home/FeaturedCards'
-import Banner from '../components/Home/Banner'
+import Banner from '../components/Common/Banner'
 import ProvinceCards from '../components/Home/ProvinceCards'
 import PropTypes from 'prop-types'; // Import PropTypes
 import H1 from '../components/Common/H1'
