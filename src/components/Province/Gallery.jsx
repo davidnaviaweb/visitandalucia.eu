@@ -1,6 +1,7 @@
-import React from 'react'
 import GalleryItem from './GalleryItem'
 import H2 from '../Common/H2'
+
+import PropTypes from 'prop-types';
 
 function Gallery({ images }) {
     return (
@@ -15,4 +16,9 @@ function Gallery({ images }) {
     )
 
 }
+
+Gallery.propTypes = {
+    images: PropTypes.array.isRequired
+};
+
 export default Gallery

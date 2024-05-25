@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import axios from 'axios';
 import SimpleMap from '../components/Common/SimpleMap'
@@ -7,7 +7,7 @@ import Gallery from '../components/Province/Gallery';
 import Header from '../components/Place/Header';
 import H2 from '../components/Common/H2';
 
-const Place = (data) => {
+const Place = () => {
     const [isLoading, setIsLoading] = useState(true);
     const [place, setPlace] = useState([]);
     const [images, setImages] = useState([]);
@@ -45,13 +45,13 @@ const Place = (data) => {
             setImages(images);
             setIsLoading(false);
         });
-    }, []);
+    }, [slug]);
 
     return (
         <>
             <Header place={place} />
             <div className="flex flex-col mt-8 lg:flex-row">
-                <main className="w-full pr-0 lg:pr-12 lg:w-2/3">
+                <main className="w-full pr-0 lg:pr-12 lg:w-2/3 lg:mt-4">
                     <p className='relative text-lg italic font-light indent-8 quote font-rale'>{place.description}</p>
                 </main>
                 <aside className="w-full lg:w-1/3">
@@ -59,14 +59,23 @@ const Place = (data) => {
                         <Preloader />
                     ) : (
                         <>
-                            <H2 className='mt-8 text-xl lg:hidden' text='Ubicación' />
-                            <SimpleMap places={[place]} center={center} zoom={10} height={300} popup={false} />
-                            <h3 className='mt-4'><span className='font-bold'>Dirección:</span>&nbsp;{[place.vial_name, place.address_number, place.territories[0].name].join(', ')}</h3>
-                            <h3 className='mt-4'><span className='font-bold'>Sitio web:</span>&nbsp;<Link target="_blank" to={place.contact_information[0].web}>{place.contact_information[0].web}</Link></h3>
+                            <H2 className='mt-8 lg:hidden' text='Ubicación' />
+                            {
+                                (place.x_coord && place.y_coord) ? (
+                                    <SimpleMap places={[place]} center={center} zoom={10} height={300} popup={false} />
+
+                                ) : (<></>)
+                            }
+                            <h3 className='mt-4'><span className='font-bold'>Dirección:</span>&nbsp;{[place.vial_name, place.address_number, place.territories[0].name].filter((item) => item).join(', ')}</h3>
+                            {
+                                (place.contact_information[0].web) ? (
+                                    <h3 className='mt-4'><span className='font-bold'>Sitio web:</span>&nbsp;<Link target="_blank" to={place.contact_information[0].web}>{place.contact_information[0].web}</Link></h3>
+                                ) : (<></>)
+                            }
                         </>
                     )}
                 </aside>
-            </div>
+            </div >
             <div className='w-100'>
                 {isLoading ? (
                     <Preloader />
