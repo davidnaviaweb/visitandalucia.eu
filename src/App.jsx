@@ -64,12 +64,14 @@ function App() {
           <Router>
             <Header provinces={provinces} />
             <main className="container mx-auto">
-              <Routes>
-                <Route path="/" element={<Home provinces={provinces} items={featuredItems} mapItems={mapItems} resourceTypes={resourceTypes} />} />
-                <Route path="/provincia/:slug" element={<Province provinces={provinces} />} />
-                <Route path="/lugar/:slug" element={<Place />} />
-                <Route path="/forms" element={<Forms />} />
-              </Routes>
+              <div className='mx-2 lg:mx-0'>
+                <Routes>
+                  <Route path="/" element={<Home provinces={provinces} items={featuredItems} mapItems={mapItems} resourceTypes={resourceTypes} />} />
+                  <Route path="/provincia/:slug" element={<Province provinces={provinces} />} />
+                  <Route path="/lugar/:slug" element={<Place />} />
+                  <Route path="/forms" element={<Forms />} />
+                </Routes>
+              </div>
             </main>
             <Footer />
           </Router>
