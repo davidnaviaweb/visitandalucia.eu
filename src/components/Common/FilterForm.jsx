@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import FaIcon from './FaIcon';
+import { useState } from 'react';
+import PropTypes from 'prop-types';
 import CategoriesFilter from './CategoriesFilter';
 
 const FilterForm = ({ provinces, resourceTypes, onFormChange }) => {
@@ -38,7 +38,7 @@ const FilterForm = ({ provinces, resourceTypes, onFormChange }) => {
                     </h2>
                     {/* <p>Provincia seleccionada: {selectedProvince}</p> */}
                     <select id="provinces"
-                        className='flex items-center p-2 text-xs bg-white rounded-md shadow-lg cursor-pointer text-puertoRico-600 lg:text-sm'
+                        className='flex items-center p-2 text-xs bg-white rounded-md shadow-lg cursor-pointer dark:bg-slate-950 dark:text-white text-puertoRico-600 lg:text-sm'
                         onChange={handleProvinceChange}>
                         <option value="0" key="0">Elige una provincia</option>
                         {provinces.map((province, index) => (
@@ -52,6 +52,13 @@ const FilterForm = ({ provinces, resourceTypes, onFormChange }) => {
 
     );
 };
+
+FilterForm.propTypes = {
+    provinces: PropTypes.array.isRequired,
+    resourceTypes: PropTypes.array.isRequired,
+    onFormChange: PropTypes.func.isRequired
+};
+
 
 export default FilterForm;
 

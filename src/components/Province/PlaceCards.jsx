@@ -1,8 +1,10 @@
-import PlaceCardsItem from "./PlaceCardsItem";
+import PropTypes from 'prop-types';
+import PlaceCardsItem from './PlaceCardsItem';
 
-const PlaceCards = ({ items , max}) => {
+
+const PlaceCards = ({ items, max }) => {
   // Limitamos la cantidad de ítems a 8
-  if(max) items = items.slice(0, max);
+  if (max) items = items.slice(0, max);
 
   return (
     <div className='grid gap-2 mt-4 md:gap-4 4 sm:grid-cols-2 auto-rows-fr lg:grid-cols-3 xl:grid-cols-4'>
@@ -12,5 +14,10 @@ const PlaceCards = ({ items , max}) => {
     </div>
   );
 };
-  
-  export default PlaceCards;
+
+PlaceCards.propTypes = {
+  items: PropTypes.array.isRequired,
+  max: PropTypes.number
+};
+
+export default PlaceCards;

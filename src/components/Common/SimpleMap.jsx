@@ -71,7 +71,7 @@ function SimpleMap({ places, center, zoom, width, height, popup }) {
                 >
                     <div className='flex flex-col w-full h-full'>
                         <img src={popupInfo.image} alt={popupInfo.name} className="object-cover rounded-sm aspect-video" />
-                        <Link to={`/lugar/${popupInfo.slug}`} className='mt-2 text-sm'>{popupInfo.name}</Link>
+                        <Link to={`/lugar/${popupInfo.slug}`} className='mt-2 text-sm dark:text-puertoRico-500 dark:hover:text-puertoRico-800'>{popupInfo.name}</Link>
                     </div>
                 </Popup>
             )}

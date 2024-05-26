@@ -19,7 +19,7 @@ const CategoriesFilter = ({ categories, onCategoryChange }) => {
                 {categories.map((category, index) => (
                     <div key={index}>
                         <label htmlFor={`category-${category.code}`}>
-                            <div className={`flex items-center text-ellipsis p-2 mb-2 mr-2 rounded-md shadow-lg cursor-pointer ${selectedCategories.includes(category.code) ? 'text-white  bg-puertoRico-600' : 'bg-white text-puertoRico-600 '}`}>
+                            <div className={`flex items-center text-ellipsis p-2 mb-2 mr-2 rounded-md shadow-lg cursor-pointer ${selectedCategories.includes(category.code) ? 'text-white  bg-puertoRico-600' : 'bg-white text-puertoRico-600 dark:bg-slate-950 dark:text-white'}`}>
                                 <FaIcon resourceTypeCode={category.code} className={'text-xs lg:text-sm'} />
                                 <span className='ml-2 text-xs lg:text-sm '>{category.name}</span>
                             </div>

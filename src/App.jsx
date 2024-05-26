@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import Header from './components/Common/Header'
 import Preloader from './components/Common/Preloader'
 import axios from 'axios';
-import Forms from './components/Forms'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import Province from './pages/Province';
@@ -71,7 +70,6 @@ function App() {
                   <Route path="/provincia/:slug" element={<Province provinces={provinces} />} />
                   <Route path="/lugar/:slug" element={<Place />} />
                   <Route path="/categoria/:slug" element={<Category resourceTypes={resourceTypes} />} />
-                  <Route path="/forms" element={<Forms />} />
                 </Routes>
               </div>
             </main>

@@ -20,7 +20,6 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
             pagesGroup.push(totalPages);
         }
 
-        console.log(currentPage, totalPages);
         return pagesGroup;
     };
 
@@ -50,7 +49,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
                     {page}
                 </button>
             )}
-            {((currentPage+1) === totalPages) ? (<></>) : (
+            {((currentPage) === totalPages) ? (<></>) : (
                 <button
                     className='p-3 py-1 font-semibold text-white rounded bg-puertoRico-500 disabled:bg-puertoRico-200 hover:bg-puertoRico-700'
                     onClick={() => onPageChange(currentPage + 1)}

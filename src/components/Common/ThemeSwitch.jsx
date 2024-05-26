@@ -28,7 +28,7 @@ const ThemeSwitch = () => {
                         checked={darkMode}
                         onChange={toggleDarkMode}
                     />
-                    <div className="block bg-gray-400 dark:bg-gray-600 w-14 h-8 rounded-full"></div>
+                    <div className="block h-8 bg-gray-400 rounded-full dark:bg-gray-600 w-14"></div>
                     <div className={`dot absolute left-1 top-1 bg-white dark:bg-gray-900 w-6 h-6 rounded-full transition-transform duration-300 ${darkMode ? 'transform translate-x-full' : ''}`}></div>
                 </div>
             </label>

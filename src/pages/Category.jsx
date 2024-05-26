@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom'
 import Banner from '../components/Common/Banner';
 import PlaceCards from '../components/Province/PlaceCards';
 import axios from 'axios';
-import H2 from '../components/Common/H2';
+import H1 from '../components/Common/H1';
 import Preloader from '../components/Common/Preloader';
 import Pagination from '../components/Common/Pagination';
 
@@ -26,7 +26,7 @@ const Category = ({ resourceTypes }) => {
     async function loadPlaces() {
       const places = await axios.post('https://nac.andalucia.org/nac/api/resource/paginated',
         {
-          "item_number": newPage,
+          "item_number": (newPage + 1) * pageSize,
           "page_size": pageSize,
           "sort": "name",
           "asc": true,
@@ -42,7 +42,7 @@ const Category = ({ resourceTypes }) => {
 
     loadPlaces().then(placesData => {
       setPlaces(placesData.list);
-      setTotalPages(Math.ceil(parseInt(placesData.summary_count) / pageSize));
+      setTotalPages(Math.floor(parseInt(placesData.summary_count) / pageSize));
       setIsLoading(false);
     });
   }
@@ -69,7 +69,7 @@ const Category = ({ resourceTypes }) => {
 
     loadPlaces().then(placesData => {
       setPlaces(placesData.list);
-      setTotalPages(Math.ceil(parseInt(placesData.summary_count) / pageSize));
+      setTotalPages(Math.floor(parseInt(placesData.summary_count) / pageSize));
       setIsLoading(false);
     });
   }, [page, selectedResourceType]);
@@ -77,7 +77,7 @@ const Category = ({ resourceTypes }) => {
   return (
     <>
       <Banner src={selectedResourceType.image} text={selectedResourceType.name} className={'text-6xl'} />
-      <H2 className={'text-center'} text={'Nuestros destacados'}></H2>
+      <H1 className={'text-center'} text={'Explora'}></H1>
       {
         (isLoading) ? (
           <Preloader />

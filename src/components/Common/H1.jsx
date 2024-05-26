@@ -8,7 +8,7 @@ const H1 = ({ text, className }) => {
 
 H1.propTypes = {
     text: PropTypes.string.isRequired,
-    className: PropTypes.string.isRequired,
+    className: PropTypes.string,
 };
 
 export default H1;

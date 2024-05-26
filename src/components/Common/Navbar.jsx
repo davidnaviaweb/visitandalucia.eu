@@ -1,11 +1,10 @@
 import { useState } from 'react';
-import ThemeSwitch from '../ThemeSwitch'
+import ThemeSwitch from './ThemeSwitch'
 import { Link } from 'react-router-dom'
 import { FaBars } from 'react-icons/fa6';
 
 export default function Navbar() {
     const [isNavOpen, setIsNavOpen] = useState(false);
-    console.log(isNavOpen)
 
     return (
         <>
