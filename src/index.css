@@ -51,11 +51,12 @@
 
 @layer components {
   .preloader::before {
+    @apply border-puertoRico-500;
     content: '';
     position: absolute;
     width: 120px;
     height: 120px;
-    border: 20px solid #007a33;
+    border-width: 20px;
     border-top-color: transparent;
     border-radius: 50%;
     animation: preloader 1s linear infinite;
@@ -90,6 +91,14 @@
 /* Main Style */
 body {
   @apply bg-gray-100;
+}
+
+#root{
+  @apply w-screen;
+  @apply min-h-screen;
+  @apply flex;
+  @apply flex-col;
+  @apply justify-between;
 }
 
 .dark body {

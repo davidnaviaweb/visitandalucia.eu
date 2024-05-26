@@ -47,9 +47,9 @@ const Province = (data) => {
 
   return (
     <>
-      <Banner src={foundProvince.image} text={foundProvince.name} />
+      <Banner src={foundProvince.image} text={foundProvince.name} className={'text-8xl'} />
       <H2 text={'Nuestros destacados'}></H2>
-      <PlaceCards items={places} />
+      <PlaceCards items={places} max={8}/>
       <Gallery images={images} />
     </>
 

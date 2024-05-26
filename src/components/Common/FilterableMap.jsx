@@ -11,7 +11,6 @@ function FilterableMap({ provinces, resourceTypes, places, popup }) {
     useEffect(() => { setMapItems(places) }, [places]);
 
     const handleFormChange = (formData) => {
-
         async function fetchData(formData) {
             let filters = { "resource_state.code": "ESTREPUBLICADO" };
 

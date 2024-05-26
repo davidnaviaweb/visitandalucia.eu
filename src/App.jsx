@@ -8,6 +8,7 @@ import Home from './pages/Home';
 import Province from './pages/Province';
 import Place from './pages/Place';
 import Footer from './components/Common/Footer';
+import Category from './pages/Category';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true);
@@ -63,12 +64,13 @@ function App() {
         <>
           <Router>
             <Header provinces={provinces} />
-            <main className="container mx-auto">
-              <div className='mx-2 lg:mx-0'>
+            <main className="container flex flex-col mx-auto grow">
+              <div className='flex flex-col mx-2 lg:mx-0 grow'>
                 <Routes>
                   <Route path="/" element={<Home provinces={provinces} items={featuredItems} mapItems={mapItems} resourceTypes={resourceTypes} />} />
                   <Route path="/provincia/:slug" element={<Province provinces={provinces} />} />
                   <Route path="/lugar/:slug" element={<Place />} />
+                  <Route path="/categoria/:slug" element={<Category resourceTypes={resourceTypes} />} />
                   <Route path="/forms" element={<Forms />} />
                 </Routes>
               </div>

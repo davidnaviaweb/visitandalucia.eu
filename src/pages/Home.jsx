@@ -10,7 +10,7 @@ import banner from '../assets/images/2.jpg'
 function Home({ provinces, items, mapItems, resourceTypes}) {
     return (
         <>
-            <Banner src={banner} text={'Olé'} />
+            <Banner src={banner} text={'Olé'} className={'text-8xl'}/>
             <H1 text={'Descubre nuestra tierra'} />
             <ProvinceCards provinces={provinces} />
             <H1 text={'Lugares para perderse'} />

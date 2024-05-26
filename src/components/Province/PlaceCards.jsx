@@ -1,13 +1,13 @@
-import PlaceCardsItems from "./PlaceCardsItem";
+import PlaceCardsItem from "./PlaceCardsItem";
 
-const PlaceCards = ({ items }) => {
+const PlaceCards = ({ items , max}) => {
   // Limitamos la cantidad de ítems a 8
-  const limitedItems = items.slice(0, 8);
+  if(max) items = items.slice(0, max);
 
   return (
     <div className='grid gap-2 mt-4 md:gap-4 4 sm:grid-cols-2 auto-rows-fr lg:grid-cols-3 xl:grid-cols-4'>
-      {limitedItems.map((item, index) => (
-        index < 8 ? <PlaceCardsItems key={index} {...item} /> : null
+      {items.map((item, index) => (
+        <PlaceCardsItem key={index} {...item} />
       ))}
     </div>
   );

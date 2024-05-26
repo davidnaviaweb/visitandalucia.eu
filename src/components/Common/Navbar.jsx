@@ -16,7 +16,7 @@ export default function Navbar() {
                 <div className={`absolute md:relative z-10 bg-white dark:bg-slate-800 md:bg-transparent w-64 right-0 rounded-lg border dark:border-slate-600 md:border-none md:flex md:w-auto ${isNavOpen ? "" : "hidden"}`}>
                     <ul className="flex flex-col p-4 rounded-lg md:p-0 md:flex-row md:items-center md:mt-0 md:border-0 ">
                         <li className='flex flex-col items-center mb-2 md:mb-0'>
-                            <Link to="/categoria/alojamientos" className="px-4 py-2 mr-2 rounded-full hover:bg-puertoRico-500 hover:text-white">Hoteles</Link>
+                            <Link to="/categoria/alojamientos" className="px-4 py-2 mr-2 rounded-full hover:bg-puertoRico-500 hover:text-white">Alojamientos</Link>
                         </li>
                         <li className='flex flex-col items-center mb-2 md:mb-0'>
                             <Link to="/categoria/restaurantes" className="px-4 py-2 mr-2 rounded-full hover:bg-puertoRico-500 hover:text-white">Restaurantes</Link>
