@@ -4,9 +4,9 @@ import FaIcon from "../Common/FaIcon";
 const PlaceCardsItem = (item) => {
     let { slug, image, name, territories, resource_type } = item;
     return (
-        <Link to={`/lugar/${slug}`} className="flex">
-            <div className="flex flex-col overflow-auto shadow-xl grow rounded-2xl hover:shadow-2xl dark:bg-slate-700 h-72">
-                <figure className="flex items-start justify-end bg-center bg-cover aspect-video h-1/2 shrink-0" style={{ backgroundImage: 'url(' + image + ')' }}>
+        <Link to={`/lugar/${slug}`} className="flex h-full">
+            <div className="flex flex-col h-full overflow-auto shadow-xl grow rounded-2xl hover:shadow-2xl dark:bg-slate-700">
+                <figure className="flex items-start justify-end h-48 bg-center bg-cover aspect-video shrink-0" style={{ backgroundImage: 'url(' + image + ')' }}>
                 </figure>
                 <div className="flex flex-col justify-between p-4 grow">
                     <div className="flex flex-col">
